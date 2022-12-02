@@ -1,0 +1,1 @@
+for /f "tokens=2 " %a in ('tasklist  /fi "imagename eq edge.exe" /nh') do echo %a

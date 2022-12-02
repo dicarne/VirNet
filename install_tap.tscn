@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dr4sa6g0lsvg4"]
+
+[node name="InstallTap" type="ConfirmationDialog"]
+unique_name_in_owner = true
+popup_window = true

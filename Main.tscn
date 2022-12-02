@@ -1,0 +1,167 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm756y6p4rw8h"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_b2wdd"]
+
+[sub_resource type="SystemFont" id="SystemFont_no7wb"]
+font_names = PackedStringArray("Microsoft YaHei UI")
+
+[sub_resource type="Theme" id="Theme_qdvvp"]
+default_font = SubResource("SystemFont_no7wb")
+
+[node name="BG" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_qdvvp")
+script = ExtResource("1_b2wdd")
+
+[node name="m" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="body" type="VBoxContainer" parent="m"]
+layout_mode = 2
+
+[node name="title" type="MarginContainer" parent="m/body"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="text" type="Label" parent="m/body/title"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "虚拟局域网"
+
+[node name="server" type="MarginContainer" parent="m/body"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="server" type="HBoxContainer" parent="m/body/server"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="m" type="MarginContainer" parent="m/body/server/server"]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="m/body/server/server/m"]
+layout_mode = 2
+text = "服务器"
+
+[node name="server_line" type="LineEdit" parent="m/body/server/server"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ip" type="MarginContainer" parent="m/body"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="ip" type="HBoxContainer" parent="m/body/ip"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="m" type="MarginContainer" parent="m/body/ip/ip"]
+layout_mode = 2
+theme_override_constants/margin_right = 55
+
+[node name="Label" type="Label" parent="m/body/ip/ip/m"]
+layout_mode = 2
+text = "IP"
+
+[node name="ip_line" type="LineEdit" parent="m/body/ip/ip"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="name" type="MarginContainer" parent="m/body"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="name" type="HBoxContainer" parent="m/body/name"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="m" type="MarginContainer" parent="m/body/name/name"]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="m/body/name/name/m"]
+layout_mode = 2
+text = "网络名"
+
+[node name="name_line" type="LineEdit" parent="m/body/name/name"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="pasd" type="MarginContainer" parent="m/body"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="psd" type="HBoxContainer" parent="m/body/pasd"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="m" type="MarginContainer" parent="m/body/pasd/psd"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="m/body/pasd/psd/m"]
+layout_mode = 2
+text = "网络密码"
+
+[node name="psd_line" type="LineEdit" parent="m/body/pasd/psd"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="button" type="MarginContainer" parent="m/body"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="connect_button" type="Button" parent="m/body/button"]
+layout_mode = 2
+text = "连接"
+
+[node name="install" type="MarginContainer" parent="m/body"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="installButton" type="Button" parent="m/body/install"]
+layout_mode = 2
+text = "安装驱动"
+
+[node name="log" type="MarginContainer" parent="m/body"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 15
+
+[node name="log" type="CodeEdit" parent="m/body/log"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_spacing = 1
+scroll_smooth = true
+
+[node name="logs_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="text_changed" from="m/body/server/server/server_line" to="." method="_on_server_line_text_changed"]
+[connection signal="text_changed" from="m/body/ip/ip/ip_line" to="." method="_on_ip_line_text_changed"]
+[connection signal="text_changed" from="m/body/name/name/name_line" to="." method="_on_name_line_text_changed"]
+[connection signal="text_changed" from="m/body/pasd/psd/psd_line" to="." method="_on_psd_line_text_changed"]
+[connection signal="pressed" from="m/body/button/connect_button" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="m/body/install/installButton" to="." method="_on_install_button_pressed"]
+[connection signal="timeout" from="logs_timer" to="." method="_on_logs_timer_timeout"]
